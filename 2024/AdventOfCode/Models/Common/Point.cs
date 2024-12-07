@@ -1,8 +1,8 @@
 using System;
 
-namespace AdventOfCode.Models.Day04;
+namespace AdventOfCode.Models.Common;
 
-public record struct Point(int X, int Y)
+public record Point(int X, int Y)
 {
     public Point Adjacent(Direction direction)
     {
@@ -27,6 +27,11 @@ public record struct Point(int X, int Y)
             default:
                 throw new ArgumentException("Invalid direction", nameof(direction));
         }
+    }
+
+    public override string ToString()
+    {
+        return $"({this.X}, {this.Y})";
     }
 }
 

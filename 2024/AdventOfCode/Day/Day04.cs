@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using AdventOfCode.Extensions;
+using AdventOfCode.Models.Common;
 using AdventOfCode.Models.Day04;
 
 namespace AdventOfCode.Day;

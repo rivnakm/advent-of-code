@@ -1,4 +1,4 @@
-namespace AdventOfCode.Models.Day04;
+namespace AdventOfCode.Models.Common;
 
 public enum Direction
 {

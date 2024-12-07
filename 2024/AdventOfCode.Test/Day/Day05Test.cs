@@ -24,7 +24,6 @@ public class Day05Test
         int expected = 4598;
         int actual = Day05.PartTwo(input);
 
-        actual.Should().BeGreaterThan(4592);
         actual.Should().Be(expected);
     }
 }

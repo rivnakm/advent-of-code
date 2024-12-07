@@ -1,10 +1,21 @@
+using System;
 using System.Collections.Immutable;
-using AdventOfCode.Models.Day04;
+using AdventOfCode.Models.Common;
+using FluentAssertions;
 
-namespace AdventOfCode.Test.Models.Day04;
+namespace AdventOfCode.Test.Models.Common;
 
 public class GridTest
 {
+    [Fact]
+    public void TestArrayConstructor_EmptyArray_Throws()
+    {
+        var arr = Array.Empty<char>();
+        var create = () => new Grid(arr, 0, 0);
+
+        create.Should().Throw<ArgumentException>();
+    }
+
     [Theory]
     [InlineData(0, 1, true)]
     [InlineData(1, 0, true)]
@@ -21,7 +32,7 @@ public class GridTest
 
         var actual = grid.IsInBounds(testPoint);
 
-        Assert.Equal(expected, actual);
+        actual.Should().Be(expected);
     }
 
     [Theory]
@@ -40,7 +51,7 @@ public class GridTest
 
         var actualBool = grid.TryGetValue(testPoint, out var actualValue);
 
-        Assert.Equal(expectedBool, actualBool);
-        Assert.Equal(expectedValue, actualValue);
+        actualBool.Should().Be(expectedBool);
+        actualValue.Should().Be(expectedValue);
     }
 }
