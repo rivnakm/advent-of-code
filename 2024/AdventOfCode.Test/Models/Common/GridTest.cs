@@ -1,5 +1,6 @@
 using System;
-using System.Collections.Immutable;
+using System.Collections.Generic;
+using System.Linq;
 using AdventOfCode.Models.Common;
 using FluentAssertions;
 
@@ -10,8 +11,8 @@ public class GridTest
     [Fact]
     public void TestArrayConstructor_EmptyArray_Throws()
     {
-        var arr = Array.Empty<char>();
-        var create = () => new Grid(arr, 0, 0);
+        var list = new List<char>();
+        var create = () => new Grid(list, 0, 0);
 
         create.Should().Throw<ArgumentException>();
     }
@@ -25,8 +26,8 @@ public class GridTest
     [InlineData(2, 0, false)]
     public void TestIsInBounds(int x, int y, bool expected)
     {
-        var gridArr = "ABCD".ToImmutableArray();
-        var grid = new Grid(gridArr, 2, 2);
+        var gridList = "ABCD".ToList();
+        var grid = new Grid(gridList, 2, 2);
 
         var testPoint = new Point(x, y);
 
@@ -44,8 +45,8 @@ public class GridTest
     [InlineData(2, 0, false, default(char))]
     public void TestTryGetValue(int x, int y, bool expectedBool, char expectedValue)
     {
-        var gridArr = "ABCD".ToImmutableArray();
-        var grid = new Grid(gridArr, 2, 2);
+        var gridList = "ABCD".ToList();
+        var grid = new Grid(gridList, 2, 2);
 
         var testPoint = new Point(x, y);
 

@@ -22,15 +22,6 @@ public class GuardMap : Grid
         this._originalGuardFacing = guardFacing;
     }
 
-    public GuardMap(ImmutableArray<char> grid, int rows, int cols) : base(grid, rows, cols)
-    {
-        var (guardPosition, guardFacing) = this.FindGuard();
-        this._guardPosition = guardPosition;
-        this._guardFacing = guardFacing;
-        this._originalGuardPosition = guardPosition;
-        this._originalGuardFacing = guardFacing;
-    }
-
     public GuardMap(IList<char> grid, int rows, int cols) : base(grid, rows, cols)
     {
         var (guardPosition, guardFacing) = this.FindGuard();

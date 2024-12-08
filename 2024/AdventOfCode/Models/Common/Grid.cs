@@ -1,29 +1,24 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 
 namespace AdventOfCode.Models.Common;
 
 public class Grid
 {
-    protected ImmutableArray<char> _grid;
+    protected IList<char> _grid;
     protected int _rows;
     protected int _cols;
 
-    public Grid(ImmutableArray<char> grid, int rows, int cols)
+    public Grid(IList<char> grid, int rows, int cols)
     {
-        if (grid.Length == 0 || rows == 0 || cols == 0)
+        if (grid.Count == 0 || rows == 0 || cols == 0)
         {
             throw new ArgumentException("Cannot create grid from empty matrix");
         }
         this._grid = grid;
         this._rows = rows;
         this._cols = cols;
-    }
-
-    public Grid(IList<char> grid, int rows, int cols) : this(grid.ToImmutableArray(), rows, cols)
-    {
     }
 
     public Grid(IList<IList<char>> grid)
@@ -39,7 +34,7 @@ public class Grid
 
         this._rows = grid.Count;
         this._cols = grid[0].Count;
-        this._grid = grid.SelectMany(row => row).ToImmutableArray();
+        this._grid = grid.SelectMany(row => row).ToList();
     }
 
     public IEnumerable<Point> Points()
@@ -51,6 +46,24 @@ public class Grid
                 yield return new Point(j, i);
             }
         }
+    }
+
+    public void Set(Point point, char value)
+    {
+        if (!TrySetValue(point, value))
+        {
+            throw new ArgumentOutOfRangeException(nameof(point));
+        }
+    }
+
+    public bool TrySetValue(Point point, char value)
+    {
+        if (IsInBounds(point))
+        {
+            _grid[point.X + point.Y * _cols] = value;
+            return true;
+        }
+        return false;
     }
 
     public char Get(Point point)

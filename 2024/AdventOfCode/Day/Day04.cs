@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using AdventOfCode.Extensions;
@@ -20,7 +19,7 @@ public static class Day04
         var rows = lines.Count;
         var cols = lines.First().Length;
 
-        var gridArr = lines.SelectMany(l => l.TrimEnd()).ToImmutableArray();
+        var gridArr = lines.SelectMany(l => l.TrimEnd()).ToList();
         var grid = new Grid(gridArr, rows, cols);
 
         var xPoints = grid.Points().Where(p => grid.TryGetValue(p, out var value) && value == (char)XmasLetter.X);
@@ -37,7 +36,7 @@ public static class Day04
         var rows = lines.Count;
         var cols = lines.First().Length;
 
-        var gridArr = lines.SelectMany(l => l.TrimEnd()).ToImmutableArray();
+        var gridArr = lines.SelectMany(l => l.TrimEnd()).ToList();
         var grid = new Grid(gridArr, rows, cols);
 
         var aPoints = grid.Points().Where(p => grid.TryGetValue(p, out var value) && value == (char)XmasLetter.A);

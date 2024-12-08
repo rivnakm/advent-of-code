@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using AdventOfCode.Extensions;
@@ -18,8 +17,8 @@ public static class Day06
         var rows = lines.Count;
         var cols = lines.First().Length;
 
-        var gridArr = lines.SelectMany(l => l.TrimEnd()).ToImmutableArray();
-        var guardMap = new GuardMap(gridArr, rows, cols);
+        var gridList = lines.SelectMany(l => l.TrimEnd()).ToList();
+        var guardMap = new GuardMap(gridList, rows, cols);
 
         return guardMap.GuardPoints().Distinct().Count();
     }
@@ -33,8 +32,8 @@ public static class Day06
         var rows = lines.Count;
         var cols = lines.First().Length;
 
-        var gridArr = lines.SelectMany(l => l.TrimEnd()).ToImmutableArray();
-        var guardMap = new GuardMap(gridArr, rows, cols);
+        var gridList = lines.SelectMany(l => l.TrimEnd()).ToList();
+        var guardMap = new GuardMap(gridList, rows, cols);
 
         return guardMap.Points().Where(p => guardMap.NewObstacleCausesLoop(p)).Count();
     }

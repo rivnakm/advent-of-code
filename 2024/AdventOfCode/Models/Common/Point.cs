@@ -33,5 +33,15 @@ public record Point(int X, int Y)
     {
         return $"({this.X}, {this.Y})";
     }
+
+    public static Point operator +(Point lhs, Point rhs)
+    {
+        return new Point(lhs.X + rhs.X, lhs.Y + rhs.Y);
+    }
+
+    public static Point operator -(Point lhs, Point rhs)
+    {
+        return new Point(lhs.X - rhs.X, lhs.Y - rhs.Y);
+    }
 }
 
