@@ -35,6 +35,7 @@
     <EmbeddedResource Include="Inputs/Day06.txt" />
     <EmbeddedResource Include="Inputs/Day07.txt" />
     <EmbeddedResource Include="Inputs/Day08.txt" />
+    <EmbeddedResource Include="Inputs/Day09.txt" />
   </ItemGroup>
 
 </Project>
