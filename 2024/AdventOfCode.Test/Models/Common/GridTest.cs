@@ -55,4 +55,21 @@ public class GridTest
         actualBool.Should().Be(expectedBool);
         actualValue.Should().Be(expectedValue);
     }
+
+    [Theory]
+    [InlineData(0, 1, true, 'D')]
+    [InlineData(1, 0, true, 'B')]
+    [InlineData(3, 0, false, default(char))]
+    public void TestTryGetValue2(int x, int y, bool expectedBool, char expectedValue)
+    {
+        var gridList = "ABCDEFGHI".ToList();
+        var grid = new Grid(gridList, 3, 3);
+
+        var testPoint = new Point(x, y);
+
+        var actualBool = grid.TryGetValue(testPoint, out var actualValue);
+
+        actualBool.Should().Be(expectedBool);
+        actualValue.Should().Be(expectedValue);
+    }
 }
